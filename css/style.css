@@ -1,0 +1,123 @@
+/* body{
+    margin: 0;
+    padding: 0;
+}
+.main-container{
+    display: flex;
+    height: 633px;
+    width: auto;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.background-left {
+    flex-basis: 50%;
+    background-image: url(/images/wallet.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    width: 224px;
+    overflow-y: hidden ;
+    justify-content: center;
+}
+
+.background-right{
+    flex-basis: 50%;
+}
+
+   */
+
+   body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
+  
+  .main-container {
+    display: flex;
+    height: 633px;
+    width: auto;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .background-left {
+    flex-basis: 50%;
+    background-image: url(/images/wallet.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: 400px;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .background-right {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* .background-right h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  } */
+  .background-right h2 {
+    font-size: 60px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid; /* Adds a blinking cursor effect */
+    animation: typing 3s steps(30) infinite;
+    color: #07c0ce;
+  }
+  
+  @keyframes typing {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+  .background-right button {
+    padding: 10px 40px;
+    font-size: 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #07c0ce;
+    color: white;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .background-right button:hover {
+    padding: 10px 40px;
+    font-size: 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    color: #07c0ce;
+    border: 1px solid #07c0ce;
+  }
+
+  a {
+    color: #ffffff;
+    text-decoration: none; 
+  }
+  
+  a:hover {
+    color: white; 
+  }
+  
+  a:visited {
+    color: #07c0ce; 
+  }
+  
