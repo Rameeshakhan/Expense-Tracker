@@ -1,0 +1,118 @@
+body{
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-gap: 10px; 
+  }
+
+  .left-column {
+    background-color: lightblue; 
+    padding: 20px; 
+  }
+
+  .right-column {
+    background-color: rgb(21, 35, 52); 
+    padding: 20px; 
+    margin: 30px;
+    border-radius: 10px;
+    height: 550px;
+    color: #ffffff;
+  }
+
+  @media (max-width: 950px) {
+    .grid-container {
+      grid-template-columns: 100%;
+    }
+  }
+
+  #net-total{
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+  span{
+    font-size: 14px;
+  }
+
+  .logout-icon {
+    font-size: 24px; 
+    float: right;
+  }
+
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 6px;
+    box-sizing: border-box;
+    font-weight: 300;
+    border-right: 1px solid rgb(66, 66, 66);
+    margin-top: 4px;
+    margin-bottom: 4px;
+    text-align: left;
+  }
+
+  .account-amount-value{
+    color: #07c0ce;
+    font-size: 14px ;
+    padding: 8px 0px;
+  }
+  .cash {
+    
+  }
+
+  .bank {
+
+  }
+
+  .saving {
+    
+  }
+
+  /* Clear floats after the columns */
+  .row::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .acount-details{
+    width: 100%;
+    background-color: inherit;
+  }
+
+  .card {
+    /* width: 18rem; */
+    width: 100%;
+    border: 1px solid #282828;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #000000;
+  }
+
+  /* List Group Styles */
+  .list-group {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .list-group-item {
+    padding: 10px;
+    border-bottom: 1px solid #282828;
+  }
+
+  .list-group-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Card Footer Styles */
+  .card-footer {
+    padding: 10px;
+    background-color: #f8f8f8;
+  }
