@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <title>DashBoard</title>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="left-column">
+          Transaction
+          <div>
+            <!-- <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+              </div> -->
+          </div>
+        </div>
+        <div class="right-column">
+            <i class="fas fa-sign-out-alt logout-icon"></i>
+          <h4>Total You Have</h4>
+          <p id="net-total">20,000<span> pkr</span></p>
+          <div class="row">
+            <div class="column cash">
+                Cash <br>
+                <span class="account-amount-value">20,000</span>
+            </div>
+            <div class="column bank">
+                Bank<br>
+                <span class="account-amount-value">20,000</span>
+            </div>
+            <div class="column saving">
+                Saving <br>
+                <span class="account-amount-value">20,000</span>
+            </div>
+          </div><br>
+          <div class="card">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">All Accounts <span style="float: right; color:#07c0ce ;">+add more</span></li>
+              <li class="list-group-item">Cash  <span style="float: right;">20,000</span></li>
+              <li class="list-group-item">Bank  <span style="float: right;">20,000</span></li>
+              <li class="list-group-item">Saving <span style="float: right;">20,000</span></li>
+            </ul>
+          </div>
+          <div class="chart-container" id="doughnut-chart"></div>
+              Overview
+          </div>
+        </div>
+      </div>
+      <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>   
+      <script src="https://code.highcharts.com/highcharts.js"></script> -->
+      <script src="/js/graph.js"></script>
+</body>
+</html>
