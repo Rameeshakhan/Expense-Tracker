@@ -4,26 +4,102 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <title>DashBoard</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-auth-compat.js"></script>
+    <script src="../js/firebaseConfig.js"></script>
+    <script src="../js/graph.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>   
 </head>
 <body>
     <div class="grid-container">
         <div class="left-column">
-          Transaction
+          <h3>Create Transaction</h3>
+          <form action="" class="transaction-form">
+            <input type="number" placeholder="Enter amount">
+            <select>
+              <option value="" disabled selected>Select Transaction Type</option>
+              <option>Bank</option>
+              <option>Cash</option>
+            </select>
+            <select>
+              <option value="" disabled selected>Select Account Type</option>
+              <option>Bank</option>
+              <option>Cash</option>
+              <option>Savings</option>
+            </select><br><br>
+            <div class="category-div">
+              <div class="row">
+                <div class="col radio-border" >
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Shopping" id="inlineRadio1" value="Shopping">
+                    <label class="form-check-label">Shopping</label>
+                  </div>
+                </div>
+                <div class="col radio-border">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Food" id="inlineRadio2" value="Food">
+                    <label class="form-check-label">Food</label>
+                  </div>
+                </div>
+                <div class="col radio-border">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Family" id="inlineRadio2" value="Family">
+                    <label class="form-check-label">Family</label>
+                  </div>
+                </div>
+                <div class="col radio-border">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Beauty" id="inlineRadio2" value="Beauty">
+                    <label class="form-check-label">Beauty</label>
+                  </div>
+                </div>
+                <div class="col radio-border">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Study" id="inlineRadio2" value="Study">
+                    <label class="form-check-label">Study</label>
+                  </div>
+                </div>
+                <div class="col radio-border">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Home" id="inlineRadio2" value="Home">
+                    <label class="form-check-label">Home</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>            
+           <div>
+            <button class="transaction-add-btn">ADD</button>
+           </div>
+          </form><br>
           <div>
-            <!-- <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Separated link</a></li>
-                </ul>
-              </div> -->
+           <div class="transaction-history">
+            <h6>Transaction History</h6>
+            <table>
+              <tbody>
+                <tr>
+                  <td>Shopping</td>
+                  <td>Bank</td>
+                  <td>12-30-2023</td>
+                  <td class="income-text-color">+2000</td>
+                </tr>
+                <tr>
+                  <td>Food</td>
+                  <td>Cash</td>
+                  <td>09-25-2022</td>
+                  <td class="expense-text-color">-2000</td>
+                </tr>
+              </tbody>
+            </table>
+           </div>
           </div>
         </div>
         <div class="right-column">
@@ -46,7 +122,7 @@
           </div><br>
           <div class="card">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">All Accounts <span style="float: right; color:#07c0ce ;">+add more</span></li>
+              <li class="list-group-item">All Accounts <span style="float: right; color:#07c0ce ;"><button id="openModalBtn">+add more</button></span></li>
               <li class="list-group-item">Cash  <span style="float: right;">20,000</span></li>
               <li class="list-group-item">Bank  <span style="float: right;">20,000</span></li>
               <li class="list-group-item">Saving <span style="float: right;">20,000</span></li>
@@ -57,9 +133,5 @@
           </div>
         </div>
       </div>
-      <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>   
-      <script src="https://code.highcharts.com/highcharts.js"></script> -->
-      <script src="/js/graph.js"></script>
 </body>
 </html>
