@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Finance Tracker</title>
 </head>
 <body>
@@ -12,11 +12,28 @@
         <div class="background-left"></div>
         <div  class="background-right">
             <!-- <h2>Manage Your Finance</h2> -->
-            <h2 id="typing-heading"></h2>
+            <h1 id="typing-heading"></h1>
             <br>
-            <a href="/pages/login.html"><button>Login</button></a>
+            <a href="./pages/login.html"><button>Login</button></a>
         </div>     
     </div>
-    <script src="/js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const heading = document.getElementById('typing-heading');
+        
+        const text = "Manage Your Finance";
+        let index = 0;
+
+        function typeEffect() {
+            if (index < text.length) {
+            heading.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typeEffect, 200); // Adjust the typing speed by changing the timeout value (in milliseconds)
+            }
+        }
+
+        typeEffect();
+        });
+    </script>
     </body>
 </html>
