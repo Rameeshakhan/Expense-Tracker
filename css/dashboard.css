@@ -265,3 +265,11 @@ input:focus {
   color: #07c0ce;
   border:none;
 }
+
+.logout-btn{
+  border: none;
+  background-color: inherit;
+  color: #ffffff;
+  float: right;
+
+}
