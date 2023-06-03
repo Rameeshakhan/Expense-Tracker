@@ -1,3 +1,5 @@
+  import {initializeApp} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+  
   const firebaseConfig = {
     apiKey: "AIzaSyBaPrwDh0RR48u7Xj7A6VrOjjJm7oZ_ajc",
     authDomain: "expense-tracker-e3a72.firebaseapp.com",
@@ -8,4 +10,5 @@
     measurementId: "G-CP1H6TG2WM"
   };
 
-  // firebase.initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig);
+  export default app
