@@ -12,7 +12,6 @@ if (currentPath.includes("signup.html")) {
  
   function userSignUp(e) {
     e.preventDefault();
-  
     const username = signupForm.username.value;
     const email = signupForm.email.value;
     const password = signupForm.password.value;
