@@ -7,126 +7,129 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <title>DashBoard</title>
 </head>
 <body>
     <div class="grid-container">
         <div class="left-column">
           <h3>Create Transaction</h3>
-          <form action="" class="transaction-form">
-            <input type="number" placeholder="Enter amount">
-            <select>
+          <form action="" class="transaction-form" id="add-transaction">
+            <input type="number" name="tamount" placeholder="Enter amount">
+            <select name="transactionType">
               <option value="" disabled selected>Select Transaction Type</option>
-              <option>Bank</option>
-              <option>Cash</option>
+              <option value="expense">Expense</option>
+              <option value="income">Income</option>
             </select>
-            <select>
-              <option value="" disabled selected>Select Account Type</option>
-              <option>Bank</option>
-              <option>Cash</option>
-              <option>Savings</option>
+            <select name="transactionAccountType">
+              <option disabled selected>Select Account Type</option>
+              <option value="Bank">Bank</option>
+              <option value="Cash">Cash</option>
+              <option value="Savings">Savings</option>
             </select><br><br>
             <div class="category-div">
               <div class="row">
-                <div class="col radio-border" >
+                <div class="col radio-border">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Shopping" id="inlineRadio1" value="Shopping">
-                    <label class="form-check-label">Shopping</label>
+                    <input class="form-check-input" type="radio" name="category" id="inlineRadio1" value="Shopping">
+                    <label class="form-check-label" for="inlineRadio1">Shopping</label>
                   </div>
                 </div>
                 <div class="col radio-border">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Food" id="inlineRadio2" value="Food">
-                    <label class="form-check-label">Food</label>
+                    <input class="form-check-input" type="radio" name="category" id="inlineRadio2" value="Food">
+                    <label class="form-check-label" for="inlineRadio2">Food</label>
                   </div>
                 </div>
                 <div class="col radio-border">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Family" id="inlineRadio2" value="Family">
-                    <label class="form-check-label">Family</label>
+                    <input class="form-check-input" type="radio" name="category" id="inlineRadio3" value="Family">
+                    <label class="form-check-label" for="inlineRadio3">Family</label>
                   </div>
                 </div>
                 <div class="col radio-border">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Beauty" id="inlineRadio2" value="Beauty">
-                    <label class="form-check-label">Beauty</label>
+                    <input class="form-check-input" type="radio" name="category" id="inlineRadio4" value="Beauty">
+                    <label class="form-check-label" for="inlineRadio4">Beauty</label>
                   </div>
                 </div>
                 <div class="col radio-border">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Study" id="inlineRadio2" value="Study">
-                    <label class="form-check-label">Study</label>
+                    <input class="form-check-input" type="radio" name="category" id="inlineRadio5" value="Study">
+                    <label class="form-check-label" for="inlineRadio5">Study</label>
                   </div>
                 </div>
                 <div class="col radio-border">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="Home" id="inlineRadio2" value="Home">
-                    <label class="form-check-label">Home</label>
+                    <input class="form-check-input" type="radio" name="category" id="inlineRadio6" value="Home">
+                    <label class="form-check-label" for="inlineRadio6">Home</label>
                   </div>
                 </div>
               </div>
             </div>
             <br>            
            <div>
-            <button class="transaction-add-btn">ADD</button>
+            <input type="submit" class="transaction-add-btn" id="add-transaction" value="ADD">
            </div>
           </form><br>
           <div>
            <div class="transaction-history">
             <h6>Transaction History</h6>
             <table>
-              <tbody>
-                <tr>
-                  <td>Shopping</td>
-                  <td>Bank</td>
-                  <td>12-30-2023</td>
-                  <td class="income-text-color">+2000</td>
-                </tr>
-                <tr>
-                  <td>Food</td>
-                  <td>Cash</td>
-                  <td>09-25-2022</td>
-                  <td class="expense-text-color">-2000</td>
-                </tr>
+              <tbody id="transaction-table-body" class="tbody">
               </tbody>
             </table>
            </div>
           </div>
         </div>
         <div class="right-column">
-          <button class="logout-btn" id="logout" ><i class="fas fa-sign-out-alt logout-icon"></i></button>
+          <button id="logoutButton" class="logout-btn"><i class="fas fa-sign-out-alt logout-icon"></i> Logout</button>
           <h4>Total You Have</h4>
-          <p id="net-total">20,000<span> pkr</span></p>
+          <p id="net-total"></p>
           <div class="row">
             <div class="column cash">
                 Cash <br>
-                <span class="account-amount-value">20,000</span>
+                <span id="cash-amount" class="account-amount-value">20,000</span>
             </div>
             <div class="column bank">
                 Bank<br>
-                <span class="account-amount-value">20,000</span>
+                <span id="bank-amount" class="account-amount-value">20,000</span>
             </div>
             <div class="column saving">
                 Saving <br>
-                <span class="account-amount-value">20,000</span>
+                <span id="savings-amount" class="account-amount-value">20,000</span>
             </div>
           </div><br>
           <div class="card">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">All Accounts <span style="float: right; color:#07c0ce ;"><button id="openModalBtn">+add more</button></span></li>
-              <li class="list-group-item">Cash  <span style="float: right;">20,000</span></li>
-              <li class="list-group-item">Bank  <span style="float: right;">20,000</span></li>
-              <li class="list-group-item">Saving <span style="float: right;">20,000</span></li>
+              <li class="list-group-item">All Accounts<span style="float: right; color:#07c0ce ;"><button id="openModalBtn">+add more</button></span></li>
             </ul>
+            <div class="account-list" id="account-list-container"></div>
           </div>
+          
           <div class="chart-container" id="doughnut-chart"></div>
               Overview
           </div>
         </div>
       </div>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h5>Create Account</h5>
+      <select name="accountType" id="select">
+        <option>Bank</option>
+        <option>Cash</option>
+        <option>Savings</option>
+      </select>
+      <input type="number" name="amount" id="amount"><br>
+      <button id="createbutton">Create</button>
+    </div>
+  </div>
+
 </body>
-<script type="module" src="../js/logout.js"></script>
+<script type="module" src="../js/account.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>   
 <script type="module" src="../js/firebaseConfig.js"></script>
+<script type="module" src="../js/logout.js"></script>
 </html>
