@@ -145,14 +145,18 @@ function addTransaction(e) {
   const transactionAccountType = transactionForm.transactionAccountType.value;
   const transactionCategory = transactionForm.category.value;
   const date = new Date();
-  const transactionsCollection = collection(db, "transactions");
-
-  if (transactionType === "income") {
-    addIncomeTransaction(transactionCategory, transactionAccountType, date, transactionAmount, transactionsCollection);
-  } else {
-    addExpenseTransaction(transactionCategory, transactionAccountType, date, transactionAmount, transactionsCollection);
+  if(transactionAmount === "" | transactionType === "" | transactionAccountType ==="" | transactionCategory === ""){
+    alert("Fill all field to proceed with the transaction")
+  }else{
+    const transactionsCollection = collection(db, "transactions");
+  
+    if (transactionType === "income") {
+      addIncomeTransaction(transactionCategory, transactionAccountType, date, transactionAmount, transactionsCollection);
+    } else {
+      addExpenseTransaction(transactionCategory, transactionAccountType, date, transactionAmount, transactionsCollection);
+    }
   }
-}
+  }
 
 function addIncomeTransaction(category, accountType, date, amount, transactionsCollection) {
   addDoc(transactionsCollection, {
