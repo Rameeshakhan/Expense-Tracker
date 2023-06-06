@@ -52,6 +52,12 @@
     background-color: inherit;
   }
   
+  #accountType{
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+    background-color: inherit;
+  }
   #createbutton {
     background-color: #07c0ce;
     border: none;
