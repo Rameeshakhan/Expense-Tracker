@@ -5,10 +5,13 @@ const auth = getAuth(app);
 
 const logoutButton = document.getElementById("logoutButton");
 logoutButton.addEventListener("click", logoutUser);
+
 function logoutUser() {
   signOut(auth)
     .then(() => {
       console.log("User logged out successfully");
+      localStorage.clear();
+      window.history.pushState({}, "", "../pages/login.html");
       window.location.href = "../pages/login.html";
     })
     .catch((error) => {
