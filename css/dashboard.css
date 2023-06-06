@@ -56,7 +56,7 @@ label{
     padding: 20px; 
     margin: 30px 10px;
     border-radius: 10px;
-    height: 550px;
+    height: auto;
     color: #ffffff;
   }
 
@@ -299,4 +299,20 @@ label{
   max-height: 150px;
   overflow-y: auto;
   background-color: inherit;
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+
+#c{
+  color:rgb(6, 140, 140);
+  color:rgb(169, 1, 37);
+  color:rgb(0, 112, 187);
+  color:rgb(255, 205, 86);
+  color:rgb(0, 0, 0)
+
+
 }
