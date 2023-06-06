@@ -38,7 +38,7 @@ if (currentPath.includes("signup.html")) {
             .then(() => {
               console.log("User data stored in Firestore");
               alert("Signed Up");
-              window.location.href = "../pages/dashboard.html";
+              window.location.href = "../pages/login.html";
             })
             .catch((error) => {
               console.log("Error storing user data in Firestore:", error.message);
@@ -68,6 +68,7 @@ if (currentPath.includes("signup.html")) {
           const user = userCredential.user;
           console.log("USer Loged IN")
           alert("Successfully Loged In")
+          localStorage.setItem("userID" , user.uid)
           window.location.href = "../pages/dashboard.html"
         })
         .catch((error) => {
@@ -79,3 +80,4 @@ if (currentPath.includes("signup.html")) {
     }
   }
 }
+
