@@ -1,5 +1,5 @@
 import app from "../js/firebaseConfig.js";
-import { getFirestore, collection, addDoc, getDocs , query as firestoreQuery, where , updateDoc} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, query as firestoreQuery, where, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
 const db = getFirestore(app);
 
@@ -63,7 +63,7 @@ function getAccount() {
         addDefaultAccounts(userId)
           .then(() => {
             console.log("Default accounts added successfully!");
-            getAccount(); 
+            getAccount();
           })
           .catch((error) => {
             console.error("Error adding default accounts:", error);
@@ -115,8 +115,8 @@ function getAccount() {
 
 function addDefaultAccounts(userId) {
   const defaultAccounts = [
-    { accountType: "cash", amount: 1000 },
-    { accountType: "savings", amount: 500 }
+    { accountType: "cash", amount: 0 },
+    { accountType: "savings", amount: 0 }
   ];
 
   const promises = defaultAccounts.map((account) =>
@@ -137,23 +137,26 @@ function createAccount() {
   const accountType = document.getElementById("accountType").value;
   const amount = parseFloat(document.getElementById("amount").value);
   const userId = localStorage.getItem("userID");
-
-  addDoc(collection(db, "accounts"), {
-    accountType: accountType,
-    amount: amount,
-    userId: userId,
-  })
-    .then(() => {
-      console.log("Account created successfully!");
-      alert("Account created successfully!");
-      document.getElementById("accountType").value = "";
-      document.getElementById("amount").value = "";
-      closeModal();
-      location.reload();
+  if (amount <= 0) {
+    alert("Can't take negative inputs")
+  } else {
+    addDoc(collection(db, "accounts"), {
+      accountType: accountType,
+      amount: amount,
+      userId: userId,
     })
-    .catch((error) => {
-      console.error("Error creating account:", error);
-    });
+      .then(() => {
+        console.log("Account created successfully!");
+        alert("Account created successfully!");
+        document.getElementById("accountType").value = "";
+        document.getElementById("amount").value = "";
+        closeModal();
+        location.reload();
+      })
+      .catch((error) => {
+        console.error("Error creating account:", error);
+      });
+  }
 }
 
 // Fire a transaction
@@ -169,9 +172,41 @@ function fireTransaction(e) {
   const date = new Date();
   const userId = localStorage.getItem("userID");
 
-  if (transactionAmount <= 0) {
-    alert("Cannot take negative amount inputs.");
-  } else {
+  if ( transactionAmount ==="" | transactionAccountType===""| transactionCategory==="" | transactionType==="") {
+    alert("Fill all the details first");
+  }  else {
+    if (transactionType === "income") {
+      if (transactionAccountType === "cash") {
+        cashAmount += transactionAmount;
+      } else if (transactionAccountType === "savings") {
+        savingsAmount += transactionAmount;
+      } else {
+        bankAmount += transactionAmount;
+      }
+    } else if (transactionType === "expense") {
+      if (transactionAccountType === "cash") {
+        if (transactionAmount <= cashAmount) {
+          cashAmount -= transactionAmount;
+        } else {
+          alert("Insufficient funds in Cash account.");
+          return;
+        }
+      } else if (transactionAccountType === "savings") {
+        if (transactionAmount <= savingsAmount) {
+          savingsAmount -= transactionAmount;
+        } else {
+          alert("Insufficient funds in Savings account.");
+          return;
+        }
+      } else {
+        if (transactionAmount <= bankAmount) {
+          bankAmount -= transactionAmount;
+        } else {
+          alert("Insufficient funds in Bank account.");
+          return;
+        }
+      }
+    }
     addDoc(collection(db, "transactions"), {
       amount: transactionAmount,
       type: transactionType,
@@ -182,39 +217,6 @@ function fireTransaction(e) {
     })
       .then(() => {
         console.log("Transaction created successfully!");
-        if (transactionType === "income") {
-          if (transactionAccountType === "cash") {
-            cashAmount += transactionAmount;
-          } else if (transactionAccountType === "savings") {
-            savingsAmount += transactionAmount;
-          } else {
-            bankAmount += transactionAmount;
-          }
-        } else if (transactionType === "expense") {
-          if (transactionAccountType === "cash") {
-            if (transactionAmount <= cashAmount) {
-              cashAmount -= transactionAmount;
-            } else {
-              alert("Insufficient funds in Cash account.");
-              return;
-            }
-          } else if (transactionAccountType === "savings") {
-            if (transactionAmount <= savingsAmount) {
-              savingsAmount -= transactionAmount;
-            } else {
-              alert("Insufficient funds in Savings account.");
-              return;
-            }
-          } else {
-            if (transactionAmount <= bankAmount) {
-              bankAmount -= transactionAmount;
-            } else {
-              alert("Insufficient funds in Bank account.");
-              return;
-            }
-          }
-        }
-
         alert("Transaction created successfully!");
         transactionForm.reset();
         document.getElementById("cash-amount").innerHTML = cashAmount;
@@ -223,6 +225,7 @@ function fireTransaction(e) {
         const total = cashAmount + savingsAmount + bankAmount;
         document.getElementById("net-total").innerHTML = `${total}<span>pkr</span>`;
         updateAccountAmounts(userId, cashAmount, savingsAmount, bankAmount);
+        updateTransactions();
       })
       .catch((error) => {
         console.error("Error creating transaction:", error);
@@ -277,7 +280,6 @@ function getTransactions() {
     console.log("User ID not found in local storage.");
     return;
   }
-
   const transactionsCollection = collection(db, "transactions");
   const query = firestoreQuery(transactionsCollection, where("userId", "==", userId));
 
@@ -298,7 +300,6 @@ function getTransactions() {
         } else {
           amountColumn = `<td class="expense-text-color">-${transactionAmount}</td>`;
         }
-
         const transactionTable = document.getElementById("transaction-table-body");
         const tableRow = document.createElement("tr");
         tableRow.innerHTML += `
@@ -317,12 +318,17 @@ function getTransactions() {
     });
 }
 
+function updateTransactions() {
+  const transactionTable = document.getElementById("transaction-table-body");
+  transactionTable.innerHTML = "";
+  getTransactions();
+}
+
 // Call the necessary functions on document load
 document.addEventListener("DOMContentLoaded", () => {
   getAccount();
   getTransactions();
 });
-
 
 function calculateIncomeExpenseChart(querySnapshot) {
   let totalIncome = 0;

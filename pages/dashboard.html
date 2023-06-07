@@ -15,7 +15,7 @@
         <div class="left-column">
           <h3>Create Transaction</h3>
           <form action="" class="transaction-form" id="add-transaction">
-            <input type="number" name="tamount" placeholder="Enter amount" id ="transaction-amount">
+            <input type="number" name="tamount" min="0" paceholder="Enter amount" id ="transaction-amount">
             <select name="transactionType">
               <option value="" disabled selected>Select Transaction Type</option>
               <option value="expense">Expense</option>
@@ -115,7 +115,7 @@
       <span class="close">&times;</span>
       <h5>Create Account</h5> 
       <input type="text" name="accountType" id="accountType"><br>
-      <input type="number" name="amount" id="amount"><br>
+      <input type="number" name="amount" min="0" id="amount"><br>
       <button id="createbutton">Create</button>
     </div>
   </div>
